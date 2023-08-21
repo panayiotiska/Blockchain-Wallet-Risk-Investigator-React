@@ -25,7 +25,7 @@ function getColorForRiskScore(score) {
     { score: 40, color: '#ffcc00' },
     { score: 60, color: '#ff9933' },
     { score: 80, color: '#ff0000' },
-    { score: 100, color: '#ff0000' } // Max score
+    { score: 90, color: '#ff0000' } // Max score
   ];
 
   for (let i = 0; i < colorMap.length - 1; i++) {
