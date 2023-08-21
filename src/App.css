@@ -66,4 +66,17 @@ select {
 .risk-score {
   margin-top: 1rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.risk-score-number {
+  margin-right: 0.5rem;
+}
+
+.risk-score-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }

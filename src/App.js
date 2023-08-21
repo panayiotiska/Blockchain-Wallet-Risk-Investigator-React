@@ -1,6 +1,42 @@
 import React, { useState } from 'react';
 import './App.css';
 
+// function getColorForRiskScore(score) {
+//   // Define color thresholds and corresponding colors
+//   const thresholds = [20, 40, 60, 80, 90];
+//   const colors = ['#ffffff', '#00ff00', '#66ff33', '#ffcc00', '#ff9933', '#ff0000'];
+
+//   // Find the appropriate color based on the score
+//   let colorIndex = 0;
+//   for (let i = 0; i < thresholds.length; i++) {
+//     if (score <= thresholds[i]) {
+//       colorIndex = i;
+//       break;
+//     }
+//   }
+
+//   return colors[colorIndex];
+// }
+
+function getColorForRiskScore(score) {
+  const colorMap = [
+    { score: 0, color: '#00ff00' },
+    { score: 20, color: '#66ff33' },
+    { score: 40, color: '#ffcc00' },
+    { score: 60, color: '#ff9933' },
+    { score: 80, color: '#ff0000' },
+    { score: 100, color: '#ff0000' } // Max score
+  ];
+
+  for (let i = 0; i < colorMap.length - 1; i++) {
+    if (score <= colorMap[i].score) {
+      return colorMap[i].color;
+    }
+  }
+
+  return colorMap[colorMap.length - 1].color;
+}
+
 function App() {
   const [walletAddress, setWalletAddress] = useState('');
   const [blockchainNetwork, setBlockchainNetwork] = useState('Ethereum');
@@ -56,9 +92,22 @@ function App() {
         </button>
         {riskScore !== null && (
           <div className="risk-score">
-            <h2>Risk Score: {riskScore}</h2>
+            <h2>Risk Score: <span className="risk-score-number">{riskScore}</span></h2>
+            <div
+              className="risk-score-color"
+              style={{ backgroundColor: getColorForRiskScore(riskScore) }}
+            ></div>
           </div>
         )}
+        {/* {riskScore !== null && (
+          <div className="risk-score">
+            <h2>Risk Score: {riskScore}</h2>
+            <div
+              className="risk-score-color"
+              style={{ backgroundColor: getColorForRiskScore(riskScore) }}
+            ></div>
+          </div>
+        )} */}
       </div>
     </div>
   );
